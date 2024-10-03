@@ -37,9 +37,9 @@ else
     pkill -u $(whoami) -f nezha-agent # 杀掉当前用户下的所有 nezha-agent 进程
     nohup ${WORKDIR}/start.sh >/dev/null 2>&1 &
   elif [ -e "${FILE_PATH}/config.json" ]; then
-    echo "添加 socks5 的 crontab 重启任务"
-    (crontab -l | grep -F "@reboot pkill -kill -u $(whoami) && ${CRON_S5}") || (crontab -l; echo "@reboot pkill -kill -u $(whoami) && ${CRON_S5}") | crontab -
-    (crontab -l | grep -F "* * pgrep -x \"s5\" > /dev/null || ${CRON_S5}") || (crontab -l; echo "*/12 * * * * pgrep -x \"s5\" > /dev/null || ${CRON_S5}") | crontab -
+    #echo "添加 socks5 的 crontab 重启任务"
+    #(crontab -l | grep -F "@reboot pkill -kill -u $(whoami) && ${CRON_S5}") || (crontab -l; echo "@reboot pkill -kill -u $(whoami) && ${CRON_S5}") | crontab -
+    #(crontab -l | grep -F "* * pgrep -x \"s5\" > /dev/null || ${CRON_S5}") || (crontab -l; echo "*/12 * * * * pgrep -x \"s5\" > /dev/null || ${CRON_S5}") | crontab -
     echo "立即重启 socks5"
     pkill -u $(whoami) -f s5 # 杀掉当前用户下的所有 s5 进程
     nohup ${FILE_PATH}/s5 -c ${FILE_PATH}/config.json >/dev/null 2>&1 &
