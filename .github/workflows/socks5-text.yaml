@@ -30,4 +30,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.TOKEN}}
         PROXY_DATA: ${{ secrets.PROXY_DATA }}
       run: |
-        python test.py
+        python socks5-text.py
