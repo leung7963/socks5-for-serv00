@@ -1,4 +1,4 @@
-name: Test SOCKS5 Proxies
+name: Test SOCKS5 Proxies - 1
 
 on:
   schedule:
