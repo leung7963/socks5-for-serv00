@@ -3,9 +3,6 @@ name: Test SOCKS5 Proxies - 3
 on:
   schedule:
     - cron: '*/15 * * * *'
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
