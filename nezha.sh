@@ -12,11 +12,18 @@ REBOOT_COMMAND="@reboot pkill -kill -u $(whoami) && $PM2_PATH resurrect >> /home
 echo "检查并 重启 任务"
 
 
-if [ -e "${WORKDIR}/start.sh" ]; then
-    #echo "添加 nezha 的 crontab 重启任务"
-    #(crontab -l | grep -F "@reboot pkill -kill -u $(whoami) && ${CRON_NEZHA}") || (crontab -l; echo "@reboot pkill -kill -u $(whoami) && ${CRON_NEZHA}") | crontab -
-    #(crontab -l | grep -F "* * pgrep -x \"nezha-agent\" > /dev/null || ${CRON_NEZHA}") || (crontab -l; echo "*/12 * * * * pgrep -x \"nezha-agent\" > /dev/null || ${CRON_NEZHA}") | crontab -
-    echo "立即重启 nezha"
-    pkill -u $(whoami) -f nezha-agent # 杀掉当前用户下的所有 nezha-agent 进程
+# 检查进程是否在运行
+pgrep -x "nezha-agent" > /dev/null
+
+# 如果没有运行，则启动 nezha
+if [ $? -ne 0 ]; then
     nohup ${WORKDIR}/start.sh >/dev/null 2>&1 &
+fi
+
+# 检查进程是否在运行
+pgrep -x "s5" > /dev/null
+
+# 如果没有运行，则启动 s5
+if [ $? -ne 0 ]; then
+    nohup ${FILE_PATH}/s5 -c ${FILE_PATH}/config.json >/dev/null 2>&1 &
 fi
