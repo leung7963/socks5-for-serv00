@@ -1,8 +1,6 @@
 name: Test SOCKS5 Proxies - 1
 
 on:
-  schedule:
-    - cron: '*/15 * * * *'
   workflow_dispatch:
 
 jobs:
