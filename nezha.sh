@@ -23,19 +23,20 @@ pgrep -x "nezha-agent" > /dev/null
 # 如果没有运行，则启动 nezha
 if [ $? -ne 0 ]; then
     nohup ${WORKDIR}/start.sh >/dev/null 2>&1 &
-    echo "运行成功NEZHA-AGENT"
 fi
+
+echo "运行成功NEZHA-AGENT"
 
 
 
 # 检查进程是否在运行
+echo "检查运行SOCKS5"
 pgrep -x "s5" > /dev/null
 
-echo "检查运行SOCKS5"
 
 # 如果没有运行，则启动 s5
 if [ $? -ne 0 ]; then
     nohup ${FILE_PATH}/s5 -c ${FILE_PATH}/config.json >/dev/null 2>&1 &
-    echo "SOCKS5运行成功"
 fi
+echo "SOCKS5运行成功"
 
