@@ -12,15 +12,18 @@ REBOOT_COMMAND="@reboot pkill -kill -u $(whoami) && $PM2_PATH resurrect >> /home
 echo "检查并 重启 任务"
 
 
+
 # 检查进程是否在运行
-pgrep -x "nezha-agent" > /dev/null
 
 echo "检查运行NEZHA-AGENT"
+pgrep -x "nezha-agent" > /dev/null
+
+
 
 # 如果没有运行，则启动 nezha
 if [ $? -ne 0 ]; then
     nohup ${WORKDIR}/start.sh >/dev/null 2>&1 &
-    echo "NEZHA-AGENT运行成功"
+    echo "运行成功NEZHA-AGENT"
 fi
 
 
