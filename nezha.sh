@@ -15,15 +15,19 @@ echo "检查并 重启 任务"
 # 检查进程是否在运行
 pgrep -x "nezha-agent" > /dev/null
 
+echo "检查运行…"
+
 # 如果没有运行，则启动 nezha
 if [ $? -ne 0 ]; then
     nohup ${WORKDIR}/start.sh >/dev/null 2>&1 &
 fi
 
+echo "运行成功"
+
 # 检查进程是否在运行
-pgrep -x "s5" > /dev/null
+#pgrep -x "s5" > /dev/null
 
 # 如果没有运行，则启动 s5
-if [ $? -ne 0 ]; then
-    nohup ${FILE_PATH}/s5 -c ${FILE_PATH}/config.json >/dev/null 2>&1 &
-fi
+#if [ $? -ne 0 ]; then
+    #nohup ${FILE_PATH}/s5 -c ${FILE_PATH}/config.json >/dev/null 2>&1 &
+#fi
