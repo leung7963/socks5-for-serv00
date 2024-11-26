@@ -15,7 +15,7 @@ echo "检查并 重启 任务"
 
 # 检查进程是否在运行
 
-echo "检查运行NEZHA-AGENT"
+echo "检查NEZHA-AGENT"
 pgrep -x "nezha-agent" > /dev/null
 
 
@@ -32,7 +32,7 @@ fi
 
 
 # 检查进程是否在运行
-echo "检查运行SOCKS5"
+echo "检查SOCKS5"
 pgrep -x "s5" > /dev/null
 
 
