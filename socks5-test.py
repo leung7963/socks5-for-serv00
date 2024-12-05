@@ -5,11 +5,9 @@ from requests.exceptions import RequestException
 
 
 def trigger_github_action(domain):
-    # 清除全局代理设置，确保不使用代理
-
-    github_token = os.environ.get("GITHUB_TOKEN")  # 从环境变量中获取 GitHub token
-    repo = "leung7963/socks5-for-serv00"  # 替换为要触发的 GitHub 仓库
-    workflow_id = "nezha.yaml"  # 替换为要触发的工作流 ID 或文件名
+    github_token = os.environ.get("GITHUB_TOKEN")  # 从环境变量中获取GitHub token
+    repo = "leung7963/socks5-for-serv00"  # 替换为要触发的GitHub仓库
+    workflow_id = "nezha.yaml"  # 替换为要触发的工作流ID或文件名
     api_url = f"https://api.github.com/repos/{repo}/actions/workflows/{workflow_id}/dispatches"
 
     headers = {
@@ -22,7 +20,7 @@ def trigger_github_action(domain):
     }
 
     try:
-        # 请求 GitHub API 时不使用代理
+        # 请求GitHub API时不使用代理
         response = requests.post(api_url, json=data, headers=headers)
 
         if response.status_code == 204:
@@ -43,13 +41,12 @@ def test_connection(domain, port):
             print(f"{domain}:{port} 连接成功")
         else:
             print(f"{domain}:{port} 连接失败")
+            # 只有连接失败时才触发trigger_github_action
             trigger_github_action(domain)
     except socket.gaierror:
         print(f"{domain}:{port} 域名解析出错")
-        trigger_github_action(domain)
     except socket.timeout:
         print(f"{domain}:{port} 连接超时")
-        trigger_github_action(domain)
 
 
 # 获取GitHub环境变量中存放的域名和端口信息字符串
