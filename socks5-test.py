@@ -69,6 +69,6 @@ def batch_test_hosts(hosts_file_path):
 
 
 # 指定存储域名和端口信息的文件路径，这里假设文件在当前目录下名为hosts.txt，你可按需修改
-hosts_file_path = "hosts.txt"
+hosts_file_path = os.environ.get("PROXY_DATA", "")
 # 执行批量测试
 batch_test_hosts(hosts_file_path)
