@@ -30,10 +30,9 @@ echo "检查singbox"
 pgrep -x "cloudflared" > /dev/null
 
 
-# 如果没有运行，则启动 s5
 if [ $? -ne 0 ]; then
-    cd ./serv00-play/singbox
-    ./start.sh
+    cd./serv00-play/singbox
+    ./start.sh > /dev/null 2>&1
     echo "singbox运行成功"
 fi
 
@@ -41,10 +40,8 @@ fi
 echo "检查singbox"
 pgrep -x "serv00sb" > /dev/null
 
-
-# 如果没有运行，则启动 s5
 if [ $? -ne 0 ]; then
-    cd ./serv00-play/singbox
-    ./start.sh
+    cd./serv00-play/singbox
+    ./start.sh > /dev/null 2>&1
     echo "singbox运行成功"
 fi
