@@ -23,7 +23,7 @@ def test_connection(domain_port_str):
 
 
 # 获取GitHub环境变量中存放的域名和端口信息字符串
-domains_ports_str = os.environ.get('DOMAINS_PORTS')
+domains_ports_str = os.environ.get('PROXY_DATA')
 if domains_ports_str:
     lines = domains_ports_str.splitlines()
     for line in lines:
