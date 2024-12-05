@@ -44,16 +44,11 @@ def test_icmp_latency(host):
         return None
 
 
-def batch_test_hosts(hosts_file_path):
-    hosts = []
-    with open(hosts_file_path, 'r') as file:
-        for line in file.readlines():
-            line = line.strip()
-            if line:
-                hosts.append(line)
-
+def batch_test_hosts(proxies):
     failed_hosts = False
-    for host in hosts:
+    for proxy in proxies:
+        ip, port, _, _ = proxy
+        host = f"{ip}:{port}"
         latency = test_icmp_latency(host)
         if latency is None:
             print(f"{host}: failed.")
@@ -68,7 +63,14 @@ def batch_test_hosts(hosts_file_path):
         print("All hosts succeeded. No need to trigger GitHub Action.")
 
 
-# 指定存储域名和端口信息的文件路径，这里假设文件在当前目录下名为hosts.txt，你可按需修改
-hosts_file_path = os.environ.get("PROXY_DATA", "")
-# 执行批量测试
-batch_test_hosts(hosts_file_path)
+def load_proxies_from_env():
+    proxy_data = os.environ.get("PROXY_DATA", "")
+    proxies = []
+    for line in proxy_data.splitlines():
+        line = line.strip()  # 移除换行符和多余的空白
+    return proxies
+
+
+# 执行加载代理信息并进行批量测试
+proxies = load_proxies_from_env()
+batch_test_hosts(proxies)
