@@ -14,15 +14,15 @@ echo "检查并 重启 任务"
 
 # 检查进程是否在运行
 
-# echo "检查NEZHA-AGENT"
-# pgrep -x "nezha-agent" > /dev/null
+echo "检查NEZHA-AGENT"
+pgrep -x "nezha-agent" > /dev/null
 
 
-# 如果没有运行，则启动 nezha
-# if [ $? -ne 0 ]; then
-#   nohup ${WORKDIR}/start.sh >/dev/null 2>&1 &
-#    echo "运行成功NEZHA-AGENT"
-# fi
+如果没有运行，则启动 nezha
+if [ $? -ne 0 ]; then
+    nohup ${WORKDIR}/start.sh >/dev/null 2>&1 &
+    echo "运行成功NEZHA-AGENT"
+fi
 
 
 # 检查进程是否在运行
