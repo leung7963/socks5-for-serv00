@@ -13,32 +13,45 @@ echo "检查并 重启 任务"
 
 
 
+
+
+echo "检查并 重启 任务"
+
+
+
 # 检查进程是否在运行
 
-echo "检查NEZHA-AGENT"
-pgrep -x "nezha-agent" > /dev/null
-
+# echo "检查NEZHA-AGENT"
+# pgrep -x "nezha-agent" > /dev/null
 
 
 # 如果没有运行，则启动 nezha
-if [ $? -ne 0 ]; then
-    nohup ${WORKDIR}/start.sh >/dev/null 2>&1 &
-    echo "运行成功NEZHA-AGENT"
-fi
-
-
-
-
+# if [ $? -ne 0 ]; then
+#   nohup ${WORKDIR}/start.sh >/dev/null 2>&1 &
+#    echo "运行成功NEZHA-AGENT"
+# fi
 
 
 # 检查进程是否在运行
-echo "检查SOCKS5"
-pgrep -x "s5" > /dev/null
+echo "检查singbox"
+pgrep -x "cloudflared" > /dev/null
 
 
 # 如果没有运行，则启动 s5
 if [ $? -ne 0 ]; then
-    nohup ${FILE_PATH}/s5 -c ${FILE_PATH}/config.json >/dev/null 2>&1 &
-    echo "SOCKS5运行成功"
+    cd ./serv00-play/singbox
+    ./start.sh
+    echo "singbox运行成功"
 fi
 
+# 检查进程是否在运行
+echo "检查singbox"
+pgrep -x "serv00sb" > /dev/null
+
+
+# 如果没有运行，则启动 s5
+if [ $? -ne 0 ]; then
+    cd ./serv00-play/singbox
+    ./start.sh
+    echo "singbox运行成功"
+fi
