@@ -1,4 +1,5 @@
 import socket
+import os
 
 
 def test_connection(domain_port_str):
