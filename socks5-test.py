@@ -22,7 +22,7 @@ domains_ports_str = os.environ.get('PROXY_DATA')
 if domains_ports_str:
     lines = domains_ports_str.splitlines()
     for line in lines:
-        domain, port = line.strip().split(' ')
+        domain, port = line.strip().split(':')
         port = int(port)
         test_connection(domain, port)
 else:
