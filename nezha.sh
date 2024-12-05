@@ -31,7 +31,7 @@ pgrep -x "cloudflared" > /dev/null
 
 
 if [ $? -ne 0 ]; then
-    cd./serv00-play/singbox
+    cd ./serv00-play/singbox
     ./start.sh > /dev/null 2>&1
     echo "singbox运行成功"
 fi
@@ -41,7 +41,7 @@ echo "检查singbox"
 pgrep -x "serv00sb" > /dev/null
 
 if [ $? -ne 0 ]; then
-    cd./serv00-play/singbox
+    cd ./serv00-play/singbox
     ./start.sh > /dev/null 2>&1
     echo "singbox运行成功"
 fi
