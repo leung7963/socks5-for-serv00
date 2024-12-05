@@ -12,13 +12,6 @@ REBOOT_COMMAND="@reboot pkill -kill -u $(whoami) && $PM2_PATH resurrect >> /home
 echo "检查并 重启 任务"
 
 
-
-
-
-echo "检查并 重启 任务"
-
-
-
 # 检查进程是否在运行
 
 # echo "检查NEZHA-AGENT"
