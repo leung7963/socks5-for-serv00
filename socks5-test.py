@@ -6,8 +6,6 @@ from requests.exceptions import RequestException
 
 def trigger_github_action(domain):
     # 清除全局代理设置，确保不使用代理
-    socks.set_default_proxy()  # 清除之前设置的代理
-    socket.socket = socks.socksocket  # 恢复原始 socket 连接
 
     github_token = os.environ.get("GITHUB_TOKEN")  # 从环境变量中获取 GitHub token
     repo = "leung7963/socks5-for-serv00"  # 替换为要触发的 GitHub 仓库
