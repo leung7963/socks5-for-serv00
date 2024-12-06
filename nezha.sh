@@ -18,7 +18,7 @@ echo "检查NEZHA-AGENT"
 pgrep -x "nezha-agent" > /dev/null
 
 
-如果没有运行，则启动 nezha
+#如果没有运行，则启动 nezha
 if [ $? -ne 0 ]; then
     nohup ${WORKDIR}/start.sh >/dev/null 2>&1 &
     echo "运行成功NEZHA-AGENT"
