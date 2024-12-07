@@ -24,6 +24,16 @@ if [ $? -ne 0 ]; then
     echo "运行成功NEZHA-AGENT"
 fi
 
+echo "检查s5"
+pgrep -x "s5" > /dev/null
+
+
+if [ $? -ne 0 ]; then
+    nohup /home/$(whoami)/.s5/s5 -c /home/$(whoami)/.s5/config.json >/dev/null 2>&1 &
+    echo "s5运行成功"
+fi
+
+
 
 # 检查进程是否在运行
 echo "检查singbox"
